@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
  
 @RestController
 public class SchoolServiceController {
+	
+	private static final String STUDENT_SERVICE = "http://student-service/";
     @Autowired
     RestTemplate restTemplate;
  
@@ -23,7 +25,7 @@ public class SchoolServiceController {
     {
         System.out.println("Getting School details for " + schoolname);
  
-        String response = restTemplate.exchange("http://student-service/studentdetailsforschool/{schoolname}",
+        String response = restTemplate.exchange(STUDENT_SERVICE + "studentdetailsforschool/{schoolname}",
                                 HttpMethod.GET, null, new ParameterizedTypeReference<String>() {}, schoolname).getBody();
  
 		System.out.println("Response Received as " + response);
