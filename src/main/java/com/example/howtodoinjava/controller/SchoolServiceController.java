@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
  
 @RestController
+@RequestMapping("/rest/client")
 public class SchoolServiceController {
 	
-	private static final String STUDENT_SERVICE = "http://student-service/";
+	private static final String STUDENT_SERVICE = "http://student-service/rest/server";
     @Autowired
     RestTemplate restTemplate;
  
@@ -25,7 +26,7 @@ public class SchoolServiceController {
     {
         System.out.println("Getting School details for " + schoolname);
  
-        String response = restTemplate.exchange(STUDENT_SERVICE + "studentdetailsforschool/{schoolname}",
+        String response = restTemplate.exchange(STUDENT_SERVICE + "/schooldetails/{schoolname}",
                                 HttpMethod.GET, null, new ParameterizedTypeReference<String>() {}, schoolname).getBody();
  
 		System.out.println("Response Received as " + response);
